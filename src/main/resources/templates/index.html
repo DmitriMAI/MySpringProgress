@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Hi</title>
+</head>
+<body>
+<br>
+<h1 th:inline="text"> Hello <span th:remove="tag" sec:authentication="name"> thymeleaf </span> !</h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+<br>
+<div th:if="${people.isEmpty()}">
+    there is no people
+</div>
+
+<div th:each="person: ${people}">
+    <a th:href="@{/users/{id}(id=${person.getId()})}" th:text="${person.name}">people</a>
+    <br>
+</div>
+<div sec:authorize="hasAuthority('ADMIN')">
+    <a th:href="@{/users/new}">Add person</a>
+</div>
+</body>
+</html>

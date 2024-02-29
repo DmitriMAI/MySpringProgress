@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/registration}" method="post" th:object="${userEntity}">
+    <div th:if="${#fields.hasErrors('login')}" th:errors="*{login}"> Name error</div>
+    <label for="login">Enter login</label>
+    <input th:field="*{login}" type="text" name="login" id="login">
+    <br>
+    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> Name error</div>
+    <label for="password">Enter password</label>
+    <input th:field="*{password}" type="text" name="password" id="password">
+    <br>
+    <input type="submit" value="Sign up">
+</form>
+</body>
+</html>

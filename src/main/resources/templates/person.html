@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Person</title>
+</head>
+<body>
+<p th:text="${person.getName}"> Value </p>
+<div sec:authorize="hasAuthority('ADMIN')">
+    <a th:href="@{/users/{id}/edit(id=${person.getId()})}">Update person</a>
+</div>
+
+
+<form sec:authorize="hasAuthority('ADMIN')" th:method="DELETE" th:action="@{/users/{id}(id=${person.id})}" th:object="${person}">
+    <input type="submit" value="Delete Person"/>
+</form>
+<a href="/users">Get back to people list</a>
+</body>
+</html>
